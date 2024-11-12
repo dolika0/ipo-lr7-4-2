@@ -1,18 +1,30 @@
-import json # Подключаем библиотеку 
+import json # Подключаем библиотеку
 
-with open('dump.json', 'r') as file: # Открываем файл для чтения
-    file1 = json.load(file) # Записываем информацию  из файла, load() декодирует файл JSON и возвращает объект
+number = int(input("Введите номер квалификации: ")) 
+find = False
 
-qualifNumb = input("Введите номер квалификации : ") # Запрос числа от пользователя
+with open("dump.json", 'r', encoding='utf-8') as file: 
+    data = json.load(file) 
+    for skill in data:
+        if skill.get("model") == "data.skill": # Метод get используется для получения значения по ключу из словаря. 
+            if skill["fields"].get("specialty") == number: 
+                skill_code = skill["fields"].get("code")
+                skill_title = skill["fields"].get("title")
+                find = True
+            
+                for profession in data:
+                    if profession.get("model") == "data.specialty":
+                        specialty_code = profession["fields"].get("code")
+                        if specialty_code in skill_code:  
+                            specialty_title = profession["fields"].get("title")
+                            specialty_educational = profession["fields"].get("c_type")
+                            
+                  
 
-find = True # Предположим, что  найдено
-
-print("\n ================== Результат поиска ==================\n") # Вывод на экран
-
-for i in file1: # Перебор
-    if i['model'] == qualifNumb: # Сравнение
-        print("\n ================== Найдено ==================\n") # Вывод 
-        print( f" {i['model']}  >> Специальность  {i['speciality']}  ,{i['PTO']} " )
-
-if not find: # Условие
-    print("\n ================== Не найдено ==================\n") # Вывод на экран
+if not find:
+    print("=============== Не Найдено ===============") 
+    
+else:
+    print("=============== Найдено ===============") 
+    print(f"{specialty_code} >> Специальность '{specialty_title}' , {specialty_educational}")
+    print(f"{skill_code} >> Квалификация '{skill_title}'")
