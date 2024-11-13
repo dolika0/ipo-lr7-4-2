@@ -3,7 +3,7 @@ import json # Подключаем библиотеку
 number = int(input("Введите номер квалификации: ")) 
 find = False
 
-with open("dump.json", 'r', encoding='utf-8') as file: 
+with open("C:/Users/ASUS/Desktop/lr7/dump.json", 'r', encoding='utf-8') as file: 
     data = json.load(file) 
     for skill in data:
         if skill.get("model") == "data.skill": # Метод get используется для получения значения по ключу из словаря. 
