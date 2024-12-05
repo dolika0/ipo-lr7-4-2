@@ -32,4 +32,4 @@ for specialty in read_file:  # Перебираем каждый элемент 
 else:  # Если квалификация найдена
     print("\n", " Найдено ".center(80, "="),'\n') # Вывод на консоль по центру
     print(f"{specialty_c} >> Специальность '{specialty_title}', {specialty_educational}")  # Вывод на консоль 
-    print(f"{kvalf} >> Квалификация '{skill_title}'")  #вывод на консоль
+    print(f"{kvalf} >> Квалификация '{skill_title}'")  # Вывод на консоль
